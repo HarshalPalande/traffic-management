@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        *{
+          background: rgba(230, 242, 255,1);
+          color: rgb(20, 20, 20);
+        }
+        #header {
+            padding: 30px;
+            text-align: center;
+            background-color: rgb(117,131,153);
+            color: white;
+            font-size: 40px;
+        }
+        .upload{
+            font-family:courier; 
+            font-weight: bold;
+            border-radius: 0px; 
+            border-color: rgb(255,146,0,1);
+            border-width: 3px;
+            border-style: solid;
+            box-shadow: none;
+            font-size: 22px;
+            height: 40px;
+            background-color: white;
+        }
+        .upload:hover{
+            background-color: rgb(255,146,0,0.3);
+            transition: 0.2s;
+        }
+    </style>
+</head>
+<body style=" font-family:courier">
+    <div id="header">Dashboard</div>
+    <p style="font-size:large;">  
+    Chosen camera: <span style="font-weight:bold ;">{{ cameraid }}</span>  <br>
+    Chosen time1: <span style="font-weight:bold ;">{{ times1 }}</span>  </p>
+
+    <center>
+    <form  method="POST" action = "/selected_time2_fromB3" style=" font-size: 22px;">
+        <select name="times3" id="times3" onChange="update()">
+            {% for o in times2 %}
+                <option value="{{ o.date_posted }}" selected="False">{{ o.date_posted }}</option>
+            {% endfor %}
+        </select> 
+        Choose a final time time2 </br>   
+        <p hidden>
+            <input type="text" id="value" name="value3">
+            <input type="text" id="text" name="text3">
+        </p>
+        <p>
+            <input class="upload" type="submit" value=" submit " />
+        </p>
+        <br>
+    </form>
+    </center>  
+    <p>
+        <form action="/gotoB" target="_self" >
+            <input type="submit" value=" GO BACK " style=" font-family:courier; border-radius: 5px; border-width: 0px; color:white; font-size: 22px; background-color: rgba(0,106,255,1);height: 40px;"/> 
+        </form>
+    </p>
+    
+
+    <script type="text/javascript">
+        function update() {
+            var select = document.getElementById('times3');
+            var option = select.options[select.selectedIndex];
+            document.getElementById('value').value=option.value;
+            document.getElementById('text').value=option.text;
+        }
+
+        update();
+    </script>
+
+</body>
+</html>

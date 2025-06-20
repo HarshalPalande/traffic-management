@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Options</title>
+        <style>
+            *{
+                background: rgba(230, 242, 255,1);
+                color: rgb(20, 20, 20)
+                
+            }
+
+            .options {
+                color:black;
+                text-decoration:none         
+            }
+            .options:hover {
+                color: rgba(255, 146, 0, 1);
+                transition: 0.2s;
+                font-weight: bold;
+            }
+
+        </style>
+    </head>
+    <body style="font-size:300%;font-family:courier" >
+            <p>
+                <form action="/model_deployment" target="_self" >
+                    <input type="image" src="{{ url_for('static', filename='/images/uploadphoto_icon.png') }}" value="Upload photo" width="3%" />   
+                    <a class="options" href="/model_deployment" >Upload photo</a> 
+                    <br>
+                </form>
+                <br>
+
+                <form action="/gotoB" target="_self" >
+                    <input type="image" src="{{ url_for('static', filename='/images/dashboard_icon.png') }}" value="Upload photo" width="3%" />
+                    <a class="options" href="/gotoB" >Dashboard / Display Chart</a> 
+                <br>
+                </form>
+                <br>
+
+                <form action="/pageC" target="_self" >
+                    <input type="image" src="{{ url_for('static', filename='/images/realvideo_icon.png') }}" value="Upload photo" width="3%"/> 
+                    <a class="options" href="/pageC" >Real videos</a> 
+                <br>
+                </form>
+                <br>
+
+                <form action="/gotoD" target="_self" >
+                <input type="image" src="{{ url_for('static', filename='/images/analytics_icon.png') }}" value="Upload photo" width="3%" />
+                <a class="options" href="/gotoD" >Analytics</a>
+                <br>
+                </form>
+                <br>
+            </p>
+
+            <p>
+                <form action="/" target="_self" >
+                    <input type="submit" value=" GO BACK " style=" font-family:courier; border-radius: 5px; border-width: 0px; color:white; font-size: 22px; background-color: rgba(0,106,255,1);height: 40px;"/> 
+                </form>
+            </p>
+    </body>
+</html>
+
+<!--to add on click go to corresponding pages-->

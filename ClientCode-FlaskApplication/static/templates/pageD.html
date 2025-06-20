@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics</title>
+    <style>
+        *{
+          background: rgba(230, 242, 255,1);
+          color: rgb(20, 20, 20);
+        }
+        #header {
+            padding: 30px;
+            text-align: center;
+            background-color: rgb(117,131,153);
+            color: white;
+            font-size: 40px;
+        }
+        .upload{
+            font-family:courier; 
+            font-weight: bold;
+            border-radius: 0px; 
+            border-color: rgb(255,146,0,1);
+            border-width: 3px;
+            border-style: solid;
+            box-shadow: none;
+            font-size: 22px;
+            height: 40px;
+            background-color: white;
+        }
+        .upload:hover{
+            background-color: rgb(255,146,0,0.3);
+            transition: 0.2s;
+        }
+    </style>
+</head>
+</head>
+<body style=" font-family:courier">
+    <div id="header"> Analytics</div>
+    <center>
+        <form  method="POST" action = "/selected_camera_fromD" style=" font-size: 22px;">
+            <br>Choose a camera 
+            <select name="cameras" id="cameras" onChange="update()">
+                {% for o in data %}
+                    <option value="{{ o.id }}" selected="False">{{ o.id }}</option>
+                {% endfor %}
+            </select>        
+            </br> 
+            Analytics based on
+            <select name="period" id="period" onChange="update()">
+                    <option value="5" selected="False">5 mins</option>
+                    <option value="10" selected="False">10 mins</option>
+                    <option value="15" selected="False">15 mins</option>
+                    <option value="20" selected="False">20 mins</option>
+                    <option value="25" selected="False">25 mins</option>
+                    <option value="30" selected="False">30 mins</option>
+                    <option value="35" selected="False">35 mins</option>
+                    <option value="40" selected="False">40 mins</option>
+                    <option value="45" selected="False">45 mins</option>
+                    <option value="50" selected="False">50 mins</option>
+                    <option value="55" selected="False">55 mins</option>
+                    <option value="60" selected="False">1 hour</option>
+                    <option value="70" selected="False">1hour 10 mins</option>
+                    <option value="80" selected="False">1 hour 20 mins</option>
+                    <option value="90" selected="False">1 hour 30 mins</option>
+                    <option value="100" selected="False">1 hour 40 mins</option>
+                    <option value="110" selected="False">1 hour 50 mins</option>
+                    <option value="120" selected="False">2 hours</option>
+            </select> 
+        
+        <p hidden>
+            <input type="text" id="value1" name="value1">
+            <input type="text" id="text1" name="text1">
+            <input type="text" id="value2" name="value2">
+            <input type="text" id="text2" name="text2">
+        </p>
+
+        <p >
+            <input class="upload" type="submit" value="submit"/>
+        </p>
+        <br>
+        
+    </form>  
+    </center>
+
+    <script type="text/javascript">
+        function update() {
+            var select = document.getElementById('cameras');
+            var option = select.options[select.selectedIndex];
+            document.getElementById('value1').value=option.value;
+            document.getElementById('text1').value=option.text;
+
+            var select2 = document.getElementById('period');
+            var option2 = select2.options[select2.selectedIndex];
+            document.getElementById('value2').value=option2.value;
+            document.getElementById('text2').value=option2.value;
+        }
+
+        update();
+    </script>
+
+<p>
+    <form action="/options" target="_self" >
+        <input type="submit" value=" GO BACK " style=" font-family:courier; border-radius: 5px; border-width: 0px; color:white; font-size: 22px; background-color: rgba(0,106,255,1);height: 40px;" /> 
+    </form>
+</p>  
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload image</title>
+    <style>
+      *{
+        background: rgba(230, 242, 255,1);
+        color: rgb(20, 20, 20) ;
+        font-family:courier; 
+        }
+      .upload{
+        font-family:courier; 
+        font-weight: bold;
+        border-radius: 0px; 
+        border-color: rgb(255,146,0,1);
+        border-width: 3px;
+        border-style: solid;
+        box-shadow: none;
+        font-size: 22px;
+        height: 40px;
+        background-color: white;
+      }
+      .upload:hover{
+        background-color: rgb(255,146,0,0.3);
+        transition: 0.2s;
+      }
+      #header {
+        padding: 30px;
+        text-align: center;
+        background-color: rgb(117,131,153);
+        color: white;
+        font-size: 40px;
+
+      }
+    </style>
+  </head>
+  <body >
+    <div id="header">Vehicle Detector</div>
+    <center>
+    <p style="font-family:courier; font-size:x-large;">Please select a .jpg image file.</p>
+    <p>
+    <form method="POST" enctype="multipart/form-data" action="/model_deployment">
+      <input type="file" id="myFile" name="uploaded-file" accept=".jpg" >
+      <input class="upload" type="submit" value="⬆Upload⬆" >
+    </form>
+    </p>
+  </center>
+    <br>
+    <p>
+    <form action="/options" target="_self" >
+      <input type="submit" value=" GO BACK " style=" font-family:courier; border-radius: 5px; border-width: 0px; color:white; font-size: 22px; background-color: rgba(0,106,255,1);height: 40px;" > 
+    </form>
+    </p>
+  </body>
+</html>
+
+
+<!--The enctype='multipart/form-data' is a very important option to send 
+  data to the server this will not encoded form-data before being sent to 
+  the server as like application/x-www-form-urlencoded, its uses MIME 
+  stream to send form-data from client to the server. This form-encoded 
+  option is needed when you are sending file data from client to server like 
+  file upload.-->

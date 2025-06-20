@@ -1,0 +1,5 @@
+ClientCode-FlaskApplication/coco.names
+ClientCode-FlaskApplication/yolov3-320.cfg
+ClientCode-FlaskApplication/yolov3-320.weights
+ClientCode-FlaskApplication/static/upload/input_image.jpg
+ClientCode-FlaskApplication/static/upload/output_image.jpg

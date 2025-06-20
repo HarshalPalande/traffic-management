@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Of Service</title>
+</head>
+<style>
+    *{
+        background: rgba(230, 242, 255,1);
+        color: rgb(20, 20, 20);
+        font-size: large;
+    }
+    table, th, td{
+        color: rgb(20, 20,20);
+        border: 2px solid;
+        border-collapse: collapse;
+        text-align: center;
+        vertical-align: middle;
+        background-color: rgba(0,106,255,0.1);
+        margin-top: 10px;
+    }
+    th{
+        height: 25px;
+        padding: 7px;
+        background-color: rgba(0,106,255,0.35);
+        color: black;
+        border-right-color: rgb(117,131,153); 
+        border-left-color: rgb(117,131,153); 
+        border-left-width: 1px;  
+        border-right-width: 1px; 
+    }
+    td{
+        border-left-width: 1px;  
+        border-right-width: 1px; 
+        border-right-color: rgb(117,131,153); 
+        border-left-color: rgb(117,131,153); 
+    }
+    #footer{
+        position: fixed;
+        width: 100%;
+        text-align: center;
+        left: 0;
+        bottom:0;
+        background-color: rgb(117,131,153);  
+    }
+    #header {
+        padding: 30px;
+        text-align: center;
+        background-color: rgb(117,131,153);
+        color: white;
+        font-size: 40px;
+        font-family:courier;
+    }
+    
+</style>
+<body>
+    <div id="header"> What is LOS?</div>
+    <center>
+        <table>
+            <tr>
+                <th>LOS</th>
+                <th>Speed Range (mph)</th>
+                <th>Flow Range (veh/hour/lane)</th> 
+                <th>Density Range (veh/mile)</th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>Over 60</td>
+                <td>Under 700</td>
+                <td>Under 12</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>57-60</td>
+                <td>700-1100</td>
+                <td>12-20</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>54-57</td>
+                <td>1100-1550</td>
+                <td>20-30</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>46-54</td>
+                <td>1550-1850</td>
+                <td>30-42</td>
+            </tr>
+            <tr>
+                <td>E</td>
+                <td>30-46</td>
+                <td>1850-2000</td>
+                <td>42-67</td>
+            </tr>
+            <tr>
+                <td>F</td>
+                <td>Under 30</td>
+                <td>Unstable</td>
+                <td>Above 67</td>
+            </tr>
+        </table>
+    </center>
+    <br>
+    <p>
+        <p>
+            <span style="font-weight: bold; color: rgb(232, 141, 21); font-size: larger;"> A: free flow.</span> 
+            Traffic flows at or above the posted speed limit and motorists have complete mobility between lanes.
+             The average spacing between vehicles is about 550 ft(167m) or 27 car lengths. Motorists have a high level of physical and psychological comfort.
+              The effects of incidents or point breakdowns are easily absorbed. LOS A generally occurs late at night in urban areas and frequently in rural areas.
+        </p>
+        <p>
+            <span style="font-weight: bold; color: rgb(232, 141, 21); font-size: larger;">B: reasonably free flow.</span> 
+            LOS A speeds are maintained, maneuverability within the traffic stream is slightly restricted. 
+            The lowest average vehicle spacing is about 330 ft(100 m) or 16 car lengths. 
+            Motorists still have a high level of physical and psychological comfort.
+        </p>
+        <p>
+            <span style="font-weight: bold; color: rgb(232, 141, 21); font-size: larger;">C: stable flow, at or near free flow.</span> 
+            The ability to maneuver through lanes is noticeably restricted and lane changes require more driver awareness. 
+            Minimum vehicle spacing is about 220 ft(67 m) or 11 car lengths. 
+            Most experienced drivers are comfortable, roads remain safely below but efficiently close to capacity, and posted speed is maintained. 
+            Minor incidents may still have no effect but localized service will have noticeable effects and traffic delays will form behind the incident. 
+            This is the target LOS for some urban and most rural highways. 
+        </p>
+        <p>
+            <span style="font-weight: bold; color: rgb(232, 141, 21); font-size: larger;">D: approaching unstable flow.</span> 
+            Speeds slightly decrease as traffic volume slightly increases. 
+            Freedom to maneuver within the traffic stream is much more limited and driver comfort levels decrease. 
+            Vehicles are spaced about 160 ft(50m) or 8 car lengths. Minor incidents are expected to create delays. 
+            Examples are a busy shopping corridor in the middle of a weekday, or a functional urban highway during commuting hours. 
+            It is a common goal for urban streets during peak hours, as attaining LOS C would require prohibitive cost and societal impact in bypass roads and lane additions.
+        </p>
+        <p>
+            <span style="font-weight: bold; color: rgb(232, 141, 21); font-size: larger;">E: unstable flow, operating at capacity.</span> 
+            Flow becomes irregular and speed varies rapidly because
+             there are virtually no usable gaps to maneuver in the traffic stream and speeds rarely reach the posted limit.
+              Vehicle spacing is about 6 car lengths, but speeds are still at or above 50 mi/h(80 km/h). Any disruption to traffic flow,
+               such as merging ramp traffic or lane changes, will create a shock wave affecting traffic upstream. Any incident will create serious delays. 
+               Drivers' level of comfort becomes poor. This is a common standard in larger urban areas, where some roadway congestion is inevitable. 
+        </p>
+        <p>
+            <span style="font-weight: bold; color: rgb(232, 141, 21); font-size: larger;">F: forced or breakdown flow.</span> 
+            Every vehicle moves in lockstep with the vehicle in front of it, with frequent slowing required. Travel time cannot be predicted, with generally more demand than capacity. A road in a constant traffic jam is at this LOS, because LOS is an average or typical service rather than a constant state. For example, a highway might be at LOS D for the AM peak hour, but have traffic consistent with LOS C some days, LOS E or F others, and come to a halt once every few weeks.
+        </p>
+        
+        <p>Most design or planning efforts typically use service flow rates at LOS C or D, to ensure an acceptable operating service for facility users.</p>
+    </p>
+    <br>
+
+    <div id="footer">
+        The above informations are from:<br>
+        <a href="https://www.researchgate.net/figure/Level-of-Service-for-Basic-Freeway-Section_tbl2_224650870" target="_blank" style="background-color:  rgb(117,131,153);">https://www.researchgate.net/figure/Level-of-Service-for-Basic-Freeway-Section_tbl2_224650870</a>
+        &emsp;
+        <a href="https://en.m.wikipedia.org/wiki/Level_of_service_(transportation)" target="_blank" style="background-color:  rgb(117,131,153);">https://en.m.wikipedia.org/wiki/Level_of_service_(transportation)</a>
+        <br>
+    </div>  
+
+</body>
+</html>

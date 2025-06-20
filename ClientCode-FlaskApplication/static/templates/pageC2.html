@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live streaming</title>
+    <style>
+        *{
+          margin: 0;
+          padding: 0;
+          font-family:courier, sans-serif;
+          background: rgba(230, 242, 255,1);
+          color: rgb(20, 20, 20);
+        }
+
+        .topright{
+          position:absolute; 
+          top: 110px; 
+          right: 16px;
+        }
+        .los:hover{
+          font-weight: bold;
+          transition: 0.2s;
+        }
+        #header {
+              padding: 30px;
+              text-align: center;
+              background-color: rgb(117,131,153);
+              color: white;
+          font-size: 40px;
+        }
+    </style>
+</head>
+<body style="font-family:courier">
+  <div id="header"> Live Streaming</div>
+  <div class="topright">
+    <p>
+        <form action="/LOSinfo" target="_blank" >
+            <input class='los' type="submit" value=" What is LOS ? " style=" font-family:courier; border-radius: 10px; background-color: rgba(0,106,255,0.3); color: rgba(0,106,255); border-style: solid; font-size: 22px; border-width: 0px;"/> 
+        </form>
+    </p>
+  </div>
+  <p style="font-size: large;"> 
+    <br> 
+    &emsp;Chosen camera: <span style="font-weight:bold ;">{{ id }}</span> <br> 
+    &emsp;in <span style="font-weight:bold ;">{{ location }}</span> <br>
+    &emsp;covering a road of length <span style="font-weight:bold ;">{{ length }} mile</span></p>
+
+  <p> 
+      <center><img src="{{url_for('video')}}" width="40%"/></center>
+  </p> 
+
+  <div style="height: 10vh;">
+    <center>
+        <table border="0px">
+        <tr>
+            <td>A :</td>
+            <td>free flow &emsp;&emsp;</td>
+            <td>D :</td>
+            <td>approaching unstable flow &emsp;</td>
+        </tr>
+        <tr>
+            <td>B :</td>
+            <td>reasonably free flow &emsp;&emsp;</td>
+            <td>E :</td>
+            <td>unstable flow &emsp;</td>
+        </tr>
+        <tr>
+            <td>C :</td>
+            <td>stable flow &emsp;&emsp;</td>
+            <td>F :</td>
+            <td>forced or breakdown flow &emsp;</td>
+        </tr>
+        </table>
+    </center>
+</div>
+
+
+  <p>
+  <form action="/pageC" target="_self" >
+    &emsp;<input type="submit" value=" GO BACK/STOP video " style=" font-family:courier; border-radius: 5px; border-width: 0px; color:white; font-size: 22px; background-color: rgba(0,106,255,1);height: 40px;" > 
+  </form>
+  </p>
+
+  
+
+  
+</body>
+
+</html>

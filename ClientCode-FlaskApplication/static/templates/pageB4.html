@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family:courier, sans-serif;
+            background-color: white;
+            color: rgb(20, 20, 20);
+        }
+        
+        .chartCard {
+            width: 100vw;
+            height: 64vh;
+            background-color: rgba(230, 242, 255,1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .chartBox{
+            width: 25%;
+            padding: 20px;
+            border-radius: 20px;
+            border: solid 3px rgb(117,131,153);
+            background-color: white;
+            background: white;
+            
+        }
+
+        .topright{
+            position:absolute; 
+            top: 110px; 
+            right: 16px;
+        }
+        .los:hover{
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        #header {
+            padding: 30px;
+            text-align: center;
+            background-color: rgb(117,131,153);
+            color: white;
+            font-size: 40px;
+        }
+        table,tr,td{
+            background-color: rgba(230, 242, 255,1);
+        }
+
+    </style>
+</head>
+
+<body style=" font-family:courier">
+    <div id="header">Dashboard</div>
+    <div class="topright">
+        <form action="/LOSinfo" target="_blank" >
+            <input class="los" type="submit" value=" What is LOS ? " style=" font-family:courier; border-radius: 10px; background-color: rgba(0,106,255,0.3); color: rgba(0,106,255); border-style: solid; font-size: 22px; border-width: 0px;"/> 
+        </form>
+    </div>
+    <div>
+    <p style="background-color: rgba(230, 242, 255,1);font-size:large; "> <br> 
+    &emsp;Chosen camera: <span style="font-weight:bold ;background-color: rgba(230, 242, 255,1)">{{ cameraid }}</span><br>
+    &emsp;Chosen time1: <span style="font-weight:bold ;background-color: rgba(230, 242, 255,1)">{{ times1 }}</span><br>
+    &emsp;Chosen time2: <span style="font-weight:bold ;background-color: rgba(230, 242, 255,1)">{{ times2 }}</span></p>
+    </div>
+    <div class="chartCard">
+        <div class="chartBox">
+            <canvas id="barChart"></canvas>
+        </div>
+
+        <div class="chartBox">
+            <canvas id="pieChart"></canvas>
+        </div>
+    
+        <div class="chartBox">
+            <canvas id="lineChart"></canvas>
+        </div>
+    </div>
+
+    <div style="height: 10vh; background-color: rgba(230, 242, 255,1);">
+        <center style="background-color: rgba(230, 242, 255,1);">
+            <table border="0px">
+            <tr>
+                <td>A :</td>
+                <td>free flow &emsp;&emsp;</td>
+                <td>D :</td>
+                <td>approaching unstable flow &emsp;</td>
+            </tr>
+            <tr>
+                <td>B :</td>
+                <td>reasonably free flow &emsp;&emsp;</td>
+                <td>E :</td>
+                <td>unstable flow &emsp;</td>
+            </tr>
+            <tr>
+                <td>C :</td>
+                <td>stable flow &emsp;&emsp;</td>
+                <td>F :</td>
+                <td>forced or breakdown flow &emsp;</td>
+            </tr>
+            </table>
+        </center>
+    </div>
+    <p>
+        <form action="/gotoB" target="_self" style="background-color: rgba(230, 242, 255,1);">
+            &emsp;<input type="submit" value=" GO BACK " style=" font-family:courier; border-radius: 5px; border-width: 0px; color:white; font-size: 22px; background-color: rgba(0,106,255,1);height: 40px;"/> 
+        </form>
+    </p>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        var A="{{ A|safe }}";
+        var B="{{ B|safe }}";
+        var C="{{ C|safe }}";
+        var D="{{ D|safe }}";
+        var E="{{ E|safe }}";
+        var F="{{ F|safe }}";
+
+        var nbCars_string="{{ nbCars|safe }}";
+        var times_string="{{ times|safe }}";
+        
+        nbCars = nbCars_string.replace(" ","").split(',');
+        
+        times = times_string.split('&');
+       
+        // setup for barChart
+    const data={            
+        labels: ['A', 'B', 'C', 'D', 'E', 'F'],
+        datasets: [{
+                label: '# of LOS occurence',
+                data: [ A, B, C, D, E, F],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+    };
+
+    // config for BarChart
+    const config = {
+        type: 'bar',
+        data,
+        options: {
+            aspectRatio:1,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    // render init block
+    const myChart = new Chart(
+        document.getElementById('barChart'),
+        config 
+    );
+
+    //piechart
+    //config pieChart
+    const configpie = {
+        type: 'pie',
+        data,
+        options: {aspectRatio:1, }
+    };
+    //render pieChart
+    const pieChart = new Chart(
+        document.getElementById('pieChart'),
+        configpie 
+    );
+
+    //linechart
+    //setup for linechart
+    const dataline={            
+        labels: times,//selected_data['times'], //[1,2,3,4],
+        datasets: [{
+                label: '# of cars',
+                data: nbCars,//data['nbCars'],//nbCars,//[0,4,1,2],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+    };
+    // config line
+    const configline = {
+        type: 'line',
+        data: dataline,
+        options: {
+            aspectRatio:1,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+    // render line
+    const lineChart = new Chart(
+        document.getElementById('lineChart'),
+        configline 
+    );
+
+    </script>
+
+</body>
+</html>

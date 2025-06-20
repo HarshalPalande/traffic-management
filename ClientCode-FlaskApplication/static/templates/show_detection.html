@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload image</title>
+  <style>
+    *{
+      background: rgba(230, 242, 255,1);
+      color: rgb(20, 20, 20);
+      font-family:courier;
+    }
+    #header{
+      padding: 30px;
+      text-align: center;
+      background-color: rgb(117,131,153);
+      color: white;
+      font-size: 40px;
+    }
+  </style>
+</head>
+<html>
+    <body>
+        <div id="header">Vehicle Detector</div>
+        <br>
+        <center><img src="{{ url_for('static', filename='/upload/output_image.jpg') }}" alt="processed image" width="50%" >
+        <br> 
+        <p style=" font-family:courier; border-radius: 10px; font-size: 22px; color: rgb(0,106,255); font-weight: bold;">This image contains {{num_cars}} vehicles</p></center>
+
+        <p>
+            <form action="/show_image" target="_self" >
+                <input type="submit" value=" GO BACK " style=" font-family:courier; border-radius: 5px; border-width: 0px; color:white; font-size: 22px; background-color: rgba(0,106,255,1);height: 40px;"/> 
+            </form>
+        </p>
+
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        *{
+            background: rgba(230, 242, 255,1);
+            color: rgb(20, 20, 20);
+        }
+        #header {
+            padding: 30px;
+            text-align: center;
+            background-color: rgb(117,131,153);
+            color: white;
+            font-size: 40px;
+        }
+        .upload{
+            font-family:courier; 
+            font-weight: bold;
+            border-radius: 0px; 
+            border-color: rgb(255,146,0,1);
+            border-width: 3px;
+            border-style: solid;
+            box-shadow: none;
+            font-size: 22px;
+            height: 40px;
+            background-color: white;
+        }
+        .upload:hover{
+            background-color: rgb(255,146,0,0.3);
+            transition: 0.2s;
+        }
+      </style>
+</head>
+<body style=" font-family:courier">
+    
+    <div id="header">Dashboard</div>
+    <center>
+    <form  method="POST" action = "/selected_camera_fromB" style=" font-size: 22px;">
+        <p style="font-family:courier; font-size:x-large;">Choose a camera   
+        <select name="cameras" id="cameras" onChange="update()">
+            {% for o in data %}
+                <option value="{{ o.id }}" selected="False" >{{ o.id }}</option>
+            {% endfor %}
+        </select> </p> 
+        <p hidden>
+            <input type="text" id="value" name="value1">
+            <input type="text" id="text" name="text1">
+        </p>
+        <p >
+            <input class='upload' type="submit" value="submit" />
+        </p>
+        <br>
+    </form> 
+    </center> 
+    <form action="/options" target="_self" >
+        <input type="submit" value=" GO BACK " style=" font-family:courier; border-radius: 5px; border-width: 0px; color:white; font-size: 22px; background-color: rgba(0,106,255,1);height: 40px;" > 
+    </form>
+
+    <script type="text/javascript">
+        function update() {
+            var select = document.getElementById('cameras');
+            var option = select.options[select.selectedIndex];
+            document.getElementById('value').value=option.value;
+            document.getElementById('text').value=option.text;
+        }
+
+        update();
+    </script>
+
+</body>
+</html>
